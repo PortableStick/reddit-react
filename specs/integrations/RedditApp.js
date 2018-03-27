@@ -15,5 +15,9 @@ describe('RedditApp', () => {
     const actualTitle = browser.getTitle();
     expect(actualTitle).to.equal('Reddit Viewer');
   });
+
+  it('should render list of Reddit posts', () => {
+    expect(browser.isExisting('.post-item')).to.equal(true);
+  });
 });
 
