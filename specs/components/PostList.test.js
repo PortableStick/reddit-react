@@ -1,9 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import PostList from '../../src/components/PostList';
+import PostItem from '../../src/components/PostItem';
 
 const testPosts = [
-  'Post1',
+  {
+    title: 'Some title',
+    permalink: 'Some link',
+    author: 'Some author',
+    time: 'Some time',
+  },
 ];
 
 describe('PostList component', () => {
@@ -15,5 +21,9 @@ describe('PostList component', () => {
 
   it('should render a list of Reddit posts', () => {
     expect(component.find('.post-item').length).toEqual(1);
+  });
+
+  it('should render each post as a PostItem', () => {
+    expect(component.find('.post-item').type()).toEqual(PostItem);
   });
 });
