@@ -1,4 +1,5 @@
 import { formatTime } from '../utils';
+import actions from '../actions';
 
 export function dataService(service) {
   function boundDataService(url) {
@@ -14,4 +15,21 @@ export function dataService(service) {
   }
 
   return boundDataService;
+}
+
+export function bindMiddleware(JSONfetch) {
+  return function dataMiddleWare(store) {
+    return function dataMiddlewareTakesNext(next) {
+      return function dataMiddleWareReducer(action) {
+        next(action);
+        switch (action.type) {
+          case 'FETCHING_POSTS':
+            return JSONfetch(`https://api.reddit.com/r/${action.payload}/new`)
+              .then(posts => next(actions.receivePosts(posts)));
+          default:
+            return store;
+        }
+      };
+    };
+  };
 }
