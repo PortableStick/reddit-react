@@ -26,7 +26,7 @@ export class App extends Component {
 }
 
 export function mapStateToProps(state) {
-  return { ...state.rootReducer, ...state.flagReducer };
+  return { ...state.app, ...state.flags };
 }
 
 export function mapDispatchToProps(dispatch) {

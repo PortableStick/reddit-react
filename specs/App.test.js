@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { App, mapStateToProps, mapDispatchToProps } from '../src/App';
 import actions from '../src/actions';
+import { initialState } from '../src/reducers';
 
 describe('App', () => {
   it('should render without crashing', () => {
@@ -11,18 +12,8 @@ describe('App', () => {
 
   describe('mapStateToProps', () => {
     it('should return return a new object with the top-level properties of all passed objects flattened out', () => {
-      const testState = {
-        rootReducer: {
-          posts: [],
-          error: null,
-        },
-        flagReducer: {
-          fetching: false,
-        },
-      };
-
-      expect(mapStateToProps(testState))
-        .toMatchObject({ ...testState.rootReducer, ...testState.flagReducer });
+      expect(mapStateToProps(initialState))
+        .toMatchObject({ ...initialState.app, ...initialState.flags });
     });
   });
 
