@@ -8,7 +8,7 @@ function PostItem({
   time,
 }) {
   return (
-    <li>
+    <li className="post-item">
       <a href={permalink} className="post-title">{title}</a>
       <div className="post-info">
         Submitted&nbsp;

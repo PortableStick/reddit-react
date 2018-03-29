@@ -8,7 +8,6 @@ function PostList(props) {
     <ul>
       {props.posts.map(post => (<PostItem
         key={`${post}-item`}
-        className="post-item"
         {...post}
       />))}
     </ul>

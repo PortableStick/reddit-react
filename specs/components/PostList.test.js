@@ -20,10 +20,10 @@ describe('PostList component', () => {
   });
 
   it('should render a list of Reddit posts', () => {
-    expect(component.find('.post-item').length).toEqual(1);
+    expect(component.find('PostItem').length).toEqual(1);
   });
 
   it('should render each post as a PostItem', () => {
-    expect(component.find('.post-item').type()).toEqual(PostItem);
+    expect(component.find('PostItem').type()).toEqual(PostItem);
   });
 });
