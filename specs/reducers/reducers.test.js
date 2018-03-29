@@ -81,7 +81,7 @@ describe('Flag', () => {
 
   describe('fetchPostsFromSubreddit', () => {
     const testAction = {
-      type: types.FETCHING_POSTS,
+      type: types.FLAG_FETCHING_POSTS,
     };
 
     const startingState = {

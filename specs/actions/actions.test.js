@@ -37,4 +37,14 @@ describe('Action creators', () => {
       expect(actions.handleError(err)).toEqual(expectedAction);
     });
   });
+
+  describe('flagFetchingPosts', () => {
+    it('should create an action to flag that posts are being fetched', () => {
+      const expectedAction = {
+        type: types.FLAG_FETCHING_POSTS,
+      };
+
+      expect(actions.flagFetchingPosts()).toEqual(expectedAction);
+    });
+  });
 });

@@ -22,7 +22,7 @@ export function rootReducer(state = initialState, action) {
 
 export function flagReducer(state = initialState, action) {
   switch (action.type) {
-    case types.FETCHING_POSTS:
+    case types.FLAG_FETCHING_POSTS:
       return {
         ...state,
         fetching: true,

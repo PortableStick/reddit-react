@@ -66,9 +66,9 @@ describe('middleware reducer', () => {
     expect(mockDataService.mock.calls.length).toEqual(0);
   });
 
-  it('should call next() with the fetchingPosts action creator when supplied the action type FETCHING_POSTS', () => {
+  it('should call next() with the fetchingPosts action creator when supplied the action type FLAG_FETCHING_POSTS', () => {
     const expectedAction = {
-      type: types.FETCHING_POSTS,
+      type: types.FLAG_FETCHING_POSTS,
     };
     middleware(testActionFetch);
     expect(mockNext.mock.calls.length).toEqual(2);

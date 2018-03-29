@@ -13,6 +13,9 @@ const actions = {
     type: types.HANDLE_ERROR,
     payload: error,
   }),
+  flagFetchingPosts: () => ({
+    type: types.FLAG_FETCHING_POSTS,
+  }),
 };
 
 export default actions;

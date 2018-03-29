@@ -24,7 +24,7 @@ export function bindMiddleware(JSONfetch) {
         next(action);
         switch (action.type) {
           case 'FETCHING_POSTS':
-            next(actions.fetchPostsFromSubreddit());
+            next(actions.flagFetchingPosts());
             return JSONfetch(`https://api.reddit.com/r/${action.payload}/new`)
               .then(posts => next(actions.receivePosts(posts)))
               .catch(error => next(actions.handleError(error)));
