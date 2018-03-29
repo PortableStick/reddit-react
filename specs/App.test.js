@@ -65,6 +65,12 @@ describe('App', () => {
         mappedDispatch.fetchPostsFromSubreddit();
         expect(mockDispatch.mock.calls.length).toEqual(1);
       });
+
+      it('should call the fetchPostsFromSubreddit action with the supplied subreddit passed in', () => {
+        const subreddit = 'awww';
+        mappedDispatch.fetchPostsFromSubreddit(subreddit);
+        expect(mockDispatch.mock.calls[0][0]).toEqual(actions.fetchPostsFromSubreddit(subreddit));
+      });
     });
   });
 });

@@ -47,4 +47,16 @@ describe('Action creators', () => {
       expect(actions.flagFetchingPosts()).toEqual(expectedAction);
     });
   });
+
+  describe('updateSubreddit', () => {
+    it('should create an action to update the subreddit', () => {
+      const newSubreddit = 'awww';
+      const expectedAction = {
+        type: types.UPDATE_SUBREDDIT,
+        payload: newSubreddit,
+      };
+
+      expect(actions.updateSubreddit(newSubreddit)).toEqual(expectedAction);
+    });
+  });
 });

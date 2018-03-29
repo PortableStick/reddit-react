@@ -19,7 +19,7 @@ export function mapStateToProps(state) {
 export function mapDispatchToProps(dispatch) {
   return {
     receivePosts: posts => dispatch(actions.receivePosts(posts)),
-    fetchPostsFromSubreddit: () => dispatch(actions.fetchPostsFromSubreddit()),
+    fetchPostsFromSubreddit: subreddit => dispatch(actions.fetchPostsFromSubreddit(subreddit)),
   };
 }
 

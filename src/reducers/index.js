@@ -1,6 +1,11 @@
 import types from '../constants';
 
-export const initialState = {};
+export const initialState = {
+  fetching: false,
+  posts: [],
+  error: null,
+  subreddit: 'awww',
+};
 
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -14,6 +19,11 @@ export function rootReducer(state = initialState, action) {
       return {
         ...state,
         error: action.payload,
+      };
+    case types.UPDATE_SUBREDDIT:
+      return {
+        ...state,
+        subreddit: action.payload,
       };
     default:
       return state;

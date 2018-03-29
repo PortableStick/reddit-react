@@ -16,6 +16,10 @@ const actions = {
   flagFetchingPosts: () => ({
     type: types.FLAG_FETCHING_POSTS,
   }),
+  updateSubreddit: newSubreddit => ({
+    type: types.UPDATE_SUBREDDIT,
+    payload: newSubreddit,
+  }),
 };
 
 export default actions;

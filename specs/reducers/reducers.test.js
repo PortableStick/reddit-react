@@ -1,6 +1,13 @@
 import { rootReducer, flagReducer, initialState } from '../../src/reducers';
 import types from '../../src/constants';
 
+const startingState = {
+  fetching: true,
+  posts: [],
+  error: false,
+  subreddit: 'all',
+};
+
 describe('RootReducer', () => {
   it('should return the initial state when nothing is passed', () => {
     expect(rootReducer(undefined, {})).toEqual(initialState);
@@ -10,13 +17,6 @@ describe('RootReducer', () => {
     const testAction = {
       type: types.RECEIVE_POSTS,
       payload: ['I\'m a post!'],
-    };
-
-    const startingState = {
-      fetching: true,
-      posts: [],
-      error: false,
-      message: 'this is nonsense',
     };
 
     it('should return the state with the fetching property set to false', () => {
@@ -48,12 +48,6 @@ describe('RootReducer', () => {
       payload: error,
     };
 
-    const startingState = {
-      error: null,
-      fetching: false,
-      posts: ['I\'m a post'],
-    };
-
     it('should return the state with the error property set', () => {
       const expectedState = {
         error,
@@ -66,6 +60,22 @@ describe('RootReducer', () => {
       const expectedState = {
         ...startingState,
         error,
+      };
+
+      expect(rootReducer(startingState, testAction)).toEqual(expectedState);
+    });
+  });
+
+  describe('updateSubreddit', () => {
+    const testAction = {
+      type: types.UPDATE_SUBREDDIT,
+      payload: 'awww',
+    };
+
+    it('should return the state with the updated subreddit', () => {
+      const expectedState = {
+        ...startingState,
+        subreddit: testAction.payload,
       };
 
       expect(rootReducer(startingState, testAction)).toEqual(expectedState);
@@ -84,12 +94,6 @@ describe('Flag', () => {
       type: types.FLAG_FETCHING_POSTS,
     };
 
-    const startingState = {
-      fetching: false,
-      posts: ['I love posts'],
-      error: true,
-    };
-
     it('should return the state with the fetching property set to true', () => {
       const expectedState = {
         fetching: true,
@@ -104,4 +108,3 @@ describe('Flag', () => {
     });
   });
 });
-
