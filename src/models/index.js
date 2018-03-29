@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export const PostModel = PropTypes.shape({
   string: PropTypes.string,
-  time: PropTypes.string,
+  createdUtc: PropTypes.number,
   permalink: PropTypes.string,
   author: PropTypes.string,
 });

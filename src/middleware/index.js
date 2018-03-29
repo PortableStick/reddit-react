@@ -1,4 +1,3 @@
-import { formatTime } from '../utils';
 import actions from '../actions';
 
 export function dataService(service) {
@@ -10,7 +9,7 @@ export function dataService(service) {
         author: post.author,
         permalink: post.permalink,
         title: post.title,
-        time: formatTime(+post.created_utc),
+        createdUtc: post.created_utc,
       })));
   }
 

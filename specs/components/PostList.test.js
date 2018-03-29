@@ -8,7 +8,7 @@ const testPosts = [
     title: 'Some title',
     permalink: 'Some link',
     author: 'Some author',
-    time: 'Some time',
+    createdUtc: 12345,
   },
 ];
 

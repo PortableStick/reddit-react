@@ -18,7 +18,7 @@ PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     permalink: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
+    createdUtc: PropTypes.number.isRequired,
     author: PropTypes.string.isRequired,
   })).isRequired,
 };

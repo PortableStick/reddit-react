@@ -1,3 +1,4 @@
+const time = (Date.now() / 1000) - 120;
 export const testUrl = 'http://someurl.com';
 export const expectedResponse = {
   author: 'Dino',
@@ -28,11 +29,11 @@ export const testData = {
           selftext: '',
           likes: null,
           suggested_sort: 'confidence',
-          created_utc: (Date.now() / 1000) - 120,
+          created_utc: time,
           ...expectedResponse,
         },
       },
     ],
   },
 };
-export const expectedResponseWithTime = [{ ...expectedResponse, time: '2 minutes ago' }];
+export const expectedResponseWithTime = [{ ...expectedResponse, createdUtc: time }];

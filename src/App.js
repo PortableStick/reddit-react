@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import actions from './actions';
-import { PostsModel } from './models';
 
 import './App.css';
 
@@ -36,7 +35,12 @@ export function mapDispatchToProps(dispatch) {
 }
 
 App.propTypes = {
-  posts: PostsModel.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape({
+    string: PropTypes.string,
+    createdUtc: PropTypes.number,
+    permalink: PropTypes.string,
+    author: PropTypes.string,
+  })).isRequired,
   fetchPostsFromSubreddit: PropTypes.func.isRequired,
   subreddit: PropTypes.string.isRequired,
 };

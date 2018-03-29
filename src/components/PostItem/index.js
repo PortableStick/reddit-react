@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { formatTime } from '../../utils';
 
 function PostItem({
   title,
   permalink,
   author,
-  time,
+  createdUtc,
 }) {
   return (
     <li className="post-item">
       <a href={permalink} className="post-title">{title}</a>
       <div className="post-info">
         Submitted&nbsp;
-        <span className="post-time">{time}</span>
+        <span className="post-time">{formatTime(createdUtc)}</span>
         &nbsp;ago by&nbsp;
         <span className="post-author">{author}</span>
       </div>
@@ -24,7 +25,7 @@ PostItem.propTypes = {
   title: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
+  createdUtc: PropTypes.number.isRequired,
 };
 
 export default PostItem;
