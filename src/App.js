@@ -14,10 +14,6 @@ export class App extends Component {
     this.props.fetchPostsFromSubreddit(this.props.subreddit);
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log('Will receive props: ', newProps);
-  }
-
   render() {
     const { posts } = this.props;
     return (
