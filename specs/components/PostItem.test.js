@@ -14,7 +14,7 @@ describe('PostItem component', () => {
     {...testPost}
   />);
 
-  it('should render', () => {
+  it('should render without crashing', () => {
     expect(component.exists()).toEqual(true);
   });
 

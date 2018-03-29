@@ -1,18 +1,21 @@
 import types from '../constants';
 
 export const initialState = {
-  fetching: false,
-  posts: [],
-  error: null,
-  subreddit: 'awww',
+  flags: {
+    fetching: false,
+  },
+  app: {
+    posts: [],
+    error: null,
+    subreddit: 'awww',
+  },
 };
 
-export function rootReducer(state = initialState, action) {
+export function rootReducer(state = initialState.app, action) {
   switch (action.type) {
     case types.RECEIVE_POSTS:
       return {
         ...state,
-        fetching: false,
         posts: action.payload,
       };
     case types.HANDLE_ERROR:
@@ -30,12 +33,17 @@ export function rootReducer(state = initialState, action) {
   }
 }
 
-export function flagReducer(state = initialState, action) {
+export function flagReducer(state = initialState.flags, action) {
   switch (action.type) {
     case types.FLAG_FETCHING_POSTS:
       return {
         ...state,
         fetching: true,
+      };
+    case types.RECEIVE_POSTS:
+      return {
+        ...state,
+        fetching: false,
       };
     default:
       return state;

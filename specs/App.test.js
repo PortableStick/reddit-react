@@ -5,7 +5,7 @@ import actions from '../src/actions';
 
 describe('App', () => {
   it('should render without crashing', () => {
-    const component = shallow(<App />);
+    const component = shallow(<App posts={[]} fetchPostsFromSubreddit={() => {}} subreddit="" />);
     expect(component.exists()).toEqual(true);
   });
 
@@ -39,22 +39,6 @@ describe('App', () => {
 
     it('should return an object', () => {
       expect(mappedDispatch).toMatchObject({});
-    });
-
-    describe('receivePosts', () => {
-      beforeEach(setup);
-
-      it('should call the dispatch function that gets passed in', () => {
-        expect(mockDispatch.mock.calls.length).toEqual(0);
-        mappedDispatch.receivePosts();
-        expect(mockDispatch.mock.calls.length).toEqual(1);
-      });
-
-      it('should pass the receivePosts action to the dispatch function', () => {
-        const testPosts = ['first post', 'second post'];
-        mappedDispatch.receivePosts(testPosts);
-        expect(mockDispatch.mock.calls[0][0]).toEqual(actions.receivePosts(testPosts));
-      });
     });
 
     describe('fetchPostsFromSubreddit', () => {

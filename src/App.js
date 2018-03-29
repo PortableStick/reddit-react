@@ -1,15 +1,32 @@
-import React from 'react';
-import { Provider, connect } from 'react-redux';
-import store from './store';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import actions from './actions';
+import { PostsModel } from './models';
+
 import './App.css';
 
-export function App() {
-  return (
-    <Provider store={store}>
-      <div className="App" />
-    </Provider>
-  );
+import PostList from './components/PostList';
+import Header from './components/Header';
+
+export class App extends Component {
+  componentWillMount() {
+    this.props.fetchPostsFromSubreddit(this.props.subreddit);
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log('Will receive props: ', newProps);
+  }
+
+  render() {
+    const { posts } = this.props;
+    return (
+      <div className="App">
+        <Header />
+        <PostList posts={posts} />
+      </div>
+    );
+  }
 }
 
 export function mapStateToProps(state) {
@@ -18,9 +35,14 @@ export function mapStateToProps(state) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    receivePosts: posts => dispatch(actions.receivePosts(posts)),
     fetchPostsFromSubreddit: subreddit => dispatch(actions.fetchPostsFromSubreddit(subreddit)),
   };
 }
+
+App.propTypes = {
+  posts: PostsModel.isRequired,
+  fetchPostsFromSubreddit: PropTypes.func.isRequired,
+  subreddit: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

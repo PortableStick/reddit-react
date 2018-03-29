@@ -1,16 +1,11 @@
 import { rootReducer, flagReducer, initialState } from '../../src/reducers';
 import types from '../../src/constants';
 
-const startingState = {
-  fetching: true,
-  posts: [],
-  error: false,
-  subreddit: 'all',
-};
+const { app, flags } = initialState;
 
 describe('RootReducer', () => {
   it('should return the initial state when nothing is passed', () => {
-    expect(rootReducer(undefined, {})).toEqual(initialState);
+    expect(rootReducer(undefined, {})).toEqual(app);
   });
 
   describe('receivePosts', () => {
@@ -19,25 +14,17 @@ describe('RootReducer', () => {
       payload: ['I\'m a post!'],
     };
 
-    it('should return the state with the fetching property set to false', () => {
-      const expectedState = {
-        fetching: false,
-      };
-
-      expect(rootReducer(startingState, testAction)).toMatchObject(expectedState);
-    });
-
     it('should return the state with the action\' payload set as the posts', () => {
       const expectedState = {
         posts: testAction.payload,
       };
 
-      expect(rootReducer(startingState, testAction)).toMatchObject(expectedState);
+      expect(rootReducer(app, testAction)).toMatchObject(expectedState);
     });
 
     it('should return the state with all of the state\'s properties', () => {
-      const expectedState = { ...startingState, posts: testAction.payload, fetching: false };
-      expect(rootReducer(startingState, testAction)).toEqual(expectedState);
+      const expectedState = { ...app, posts: testAction.payload };
+      expect(rootReducer(app, testAction)).toEqual(expectedState);
     });
   });
 
@@ -53,16 +40,16 @@ describe('RootReducer', () => {
         error,
       };
 
-      expect(rootReducer(startingState, testAction)).toMatchObject(expectedState);
+      expect(rootReducer(app, testAction)).toMatchObject(expectedState);
     });
 
     it('should return the state with all of the state\'s properties', () => {
       const expectedState = {
-        ...startingState,
+        ...app,
         error,
       };
 
-      expect(rootReducer(startingState, testAction)).toEqual(expectedState);
+      expect(rootReducer(app, testAction)).toEqual(expectedState);
     });
   });
 
@@ -74,11 +61,11 @@ describe('RootReducer', () => {
 
     it('should return the state with the updated subreddit', () => {
       const expectedState = {
-        ...startingState,
+        ...app,
         subreddit: testAction.payload,
       };
 
-      expect(rootReducer(startingState, testAction)).toEqual(expectedState);
+      expect(rootReducer(app, testAction)).toEqual(expectedState);
     });
   });
 });
@@ -86,7 +73,7 @@ describe('RootReducer', () => {
 
 describe('Flag', () => {
   it('should return the initial state when nothing is passed', () => {
-    expect(flagReducer(undefined, {})).toEqual(initialState);
+    expect(flagReducer(undefined, {})).toEqual(flags);
   });
 
   describe('fetchPostsFromSubreddit', () => {
@@ -99,12 +86,12 @@ describe('Flag', () => {
         fetching: true,
       };
 
-      expect(flagReducer(startingState, testAction)).toMatchObject(expectedState);
+      expect(flagReducer(flags, testAction)).toMatchObject(expectedState);
     });
 
     it('should return the state with all of the state\'s properties', () => {
-      const expectedState = { ...startingState, fetching: true };
-      expect(flagReducer(startingState, testAction)).toEqual(expectedState);
+      const expectedState = { ...flags, fetching: true };
+      expect(flagReducer(flags, testAction)).toEqual(expectedState);
     });
   });
 });

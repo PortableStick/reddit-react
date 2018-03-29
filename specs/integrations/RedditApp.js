@@ -19,5 +19,9 @@ describe('RedditApp', () => {
   it('should render list of Reddit posts', () => {
     expect(browser.isExisting('.post-item')).to.equal(true);
   });
+
+  it('should render a header with an input to display a subreddit', () => {
+    expect(browser.isExisting('.subreddit-input')).to.equal(true);
+  });
 });
 
