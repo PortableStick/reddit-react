@@ -25,10 +25,12 @@ export function bindMiddleware(JSONfetch) {
         switch (action.type) {
           case 'FETCHING_POSTS':
             return JSONfetch(`https://api.reddit.com/r/${action.payload}/new`)
-              .then(posts => next(actions.receivePosts(posts)));
+              .then(posts => next(actions.receivePosts(posts)))
+              .catch(error => next(actions.handleError(error)));
           default:
-            return store;
+            break;
         }
+        return store;
       };
     };
   };

@@ -39,7 +39,6 @@ describe('middleware reducer', () => {
     mockNext = jest.fn(data => data);
     middleware = bindMiddleware(mockDataService)(mockStore)(mockNext);
   });
-
   it('should call next() with the supplied action', () => {
     middleware(testAction);
     expect(mockNext.mock.calls.length).toEqual(1);
@@ -67,6 +66,20 @@ describe('middleware reducer', () => {
       payload: expectedResponseWithTime,
     };
     const response = middleware(testAction);
+    expect(response).resolves.toEqual(expectedAction);
+  });
+
+  it('should call next() with the handleError action creator when the data service throws an error', () => {
+    // If tested individually, this function will throw an error because
+    // Node considers the promise rejection unhandled.
+    const networkError = new Error('Network error');
+    const errorFetch = jest.fn().mockReturnValue(Promise.reject(networkError));
+    const expectedAction = {
+      type: types.HANDLE_ERROR,
+      payload: networkError,
+    };
+    const errorMiddleware = bindMiddleware(errorFetch)(mockStore)(mockNext);
+    const response = errorMiddleware(testAction);
     expect(response).resolves.toEqual(expectedAction);
   });
 });

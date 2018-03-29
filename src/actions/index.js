@@ -9,6 +9,10 @@ const actions = {
     type: types.RECEIVE_POSTS,
     payload: posts,
   }),
+  handleError: error => ({
+    type: types.HANDLE_ERROR,
+    payload: error,
+  }),
 };
 
 export default actions;
