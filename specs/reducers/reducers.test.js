@@ -76,7 +76,7 @@ describe('Flag', () => {
     expect(flagReducer(undefined, {})).toEqual(flags);
   });
 
-  describe('fetchPostsFromSubreddit', () => {
+  describe('flagFetchingPosts', () => {
     const testAction = {
       type: types.FLAG_FETCHING_POSTS,
     };
@@ -91,6 +91,16 @@ describe('Flag', () => {
 
     it('should return the state with all of the state\'s properties', () => {
       const expectedState = { ...flags, fetching: true };
+      expect(flagReducer(flags, testAction)).toEqual(expectedState);
+    });
+  });
+
+  describe('receivePosts', () => {
+    const testAction = {
+      type: types.RECEIVE_POSTS,
+    };
+    it('should set the fetching flag to false', () => {
+      const expectedState = { ...flags, fetching: false };
       expect(flagReducer(flags, testAction)).toEqual(expectedState);
     });
   });
