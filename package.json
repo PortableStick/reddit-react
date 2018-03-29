@@ -74,7 +74,8 @@
     ],
     "coveragePathIgnorePatterns": [
       "src/index.js",
-      "src/registerServiceWorker.js"
+      "src/registerServiceWorker.js",
+      "src/store"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
