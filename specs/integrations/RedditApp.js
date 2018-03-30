@@ -23,5 +23,10 @@ describe('RedditApp', () => {
   it('should render a header with an input to display a subreddit', () => {
     expect(browser.isExisting('.subreddit-input')).to.equal(true);
   });
+
+  it('should display the current subreddit in the header', () => {
+    const currentSubreddit = browser.find('.header .current-subreddit');
+    expect(currentSubreddit.text()).to.equal('r/awww');
+  });
 });
 
